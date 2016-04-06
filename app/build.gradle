@@ -80,9 +80,9 @@ dependencies {
     compile "com.github.bumptech.glide:glide:${glideVersion}"
 
     // Database
-    compile "io.realm:realm-android:${relamVersion}"
+//    compile "io.realm:realm-android:${relamVersion}"
 
-
+    //test https://www.davidlab.net/ko/tech/android-studio-tips-applying-ui-testing-part1/
     androidTestCompile "com.android.support.test:runner:${testRunnerVersion}"
     androidTestCompile "com.android.support.test:rules:${testRunnerVersion}"
     androidTestCompile "com.android.support.test.espresso:espresso-core:${espressoVersion}"
