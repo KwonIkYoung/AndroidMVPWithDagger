@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
-
+apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -23,6 +23,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    sourceSets {
+        // src/main/kotlin 디렉터리를 소스 디렉터리에 추가합니다.
+        main.java.srcDirs += 'src/main/kotlin'
     }
 
     compileOptions {
@@ -82,7 +87,9 @@ dependencies {
     // Database
 //    compile "io.realm:realm-android:${relamVersion}"
 
-    //test https://www.davidlab.net/ko/tech/android-studio-tips-applying-ui-testing-part1/
+    //kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
+
     androidTestCompile "com.android.support.test:runner:${testRunnerVersion}"
     androidTestCompile "com.android.support.test:rules:${testRunnerVersion}"
     androidTestCompile "com.android.support.test.espresso:espresso-core:${espressoVersion}"

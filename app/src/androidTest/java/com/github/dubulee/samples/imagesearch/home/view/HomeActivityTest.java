@@ -17,7 +17,6 @@ import org.junit.runner.RunWith;
 
 import static org.mockito.Matchers.eq;
 
-//AndroidJUnit - 안드로이드 특화된 JUnit Rule
 @RunWith(AndroidJUnit4.class)
 public class HomeActivityTest {
 

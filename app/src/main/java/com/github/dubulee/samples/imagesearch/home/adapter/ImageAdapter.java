@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.github.dubulee.samples.imagesearch.HelloKt;
 import com.github.dubulee.samples.imagesearch.R;
 import com.github.dubulee.samples.imagesearch.search.ImageItem;
 import com.github.dubulee.samples.imagesearch.views.OnRecyclerItemClickListener;
@@ -42,6 +43,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.SearchViewHo
     public void onBindViewHolder(SearchViewHolder holder, int position) {
         ImageItem item = getItem(position);
         holder.tvTitle.setText(Html.fromHtml(item.getTitle()));
+//        holder.tvTitle.setText(HelloKt.formatMessage("Android with Kotlin"));
         Glide.with(context)
                 .load(item.getThumbnail())
                 .into(holder.ivThumbnail);
