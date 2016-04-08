@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.github.dubulee.samples.imagesearch.R;
 import com.github.dubulee.samples.imagesearch.home.adapter.ImageAdapter;

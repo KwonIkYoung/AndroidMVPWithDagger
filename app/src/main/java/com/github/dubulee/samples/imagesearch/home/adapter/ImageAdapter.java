@@ -20,6 +20,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import io.realm.Realm;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.SearchViewHolder>
         implements ImageAdapterDataModel, ImageAdapterDataView {
