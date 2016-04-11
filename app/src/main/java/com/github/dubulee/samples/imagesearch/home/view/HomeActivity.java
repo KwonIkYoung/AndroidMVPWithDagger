@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.github.dubulee.samples.imagesearch.R;
 import com.github.dubulee.samples.imagesearch.home.adapter.ImageAdapter;
@@ -15,6 +14,7 @@ import com.github.dubulee.samples.imagesearch.home.adapter.ImageAdapterDataView;
 import com.github.dubulee.samples.imagesearch.home.dagger.DaggerHomeComponent;
 import com.github.dubulee.samples.imagesearch.home.dagger.HomeModule;
 import com.github.dubulee.samples.imagesearch.home.presenter.HomePresenter;
+import com.github.dubulee.samples.imagesearch.views.EndlessRecyclerViewScrollListener;
 
 import javax.inject.Inject;
 
@@ -22,7 +22,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnTextChanged;
 
-public class HomeActivity extends AppCompatActivity implements HomePresenter.View {
+public class HomeActivity extends AppCompatActivity implements HomePresenter.View{
 
     @Inject
     HomePresenter homePresenter;
@@ -30,12 +30,14 @@ public class HomeActivity extends AppCompatActivity implements HomePresenter.Vie
     @Inject
     ImageAdapterDataView imageAdapterDataView;
 
+    @Inject
+    LinearLayoutManager layoutManager;
+
     @Bind(R.id.et_home_search)
     EditText etSearch;
 
     @Bind(R.id.rv_home_search_result)
     RecyclerView rvSearchResult;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +48,24 @@ public class HomeActivity extends AppCompatActivity implements HomePresenter.Vie
 
         //Dagger로 Inject
         DaggerHomeComponent.builder()
-                .homeModule(new HomeModule(this, adapter))
+                .homeModule(new HomeModule(this, adapter, new LinearLayoutManager(HomeActivity.this)))
                 .build()
                 .inject(this);
 
         ButterKnife.bind(this);
 
         rvSearchResult.setAdapter(adapter);
-        rvSearchResult.setLayoutManager(new LinearLayoutManager(HomeActivity.this));
+        rvSearchResult.setLayoutManager(layoutManager);
 
         imageAdapterDataView.setOnRecyclerItemClickListener((adapter1, position) -> {
             homePresenter.onItemClick(position);
+        });
+
+        rvSearchResult.addOnScrollListener(new EndlessRecyclerViewScrollListener(layoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+                homePresenter.plusPageCount(etSearch.getText().toString());
+            }
         });
     }
 
@@ -68,7 +77,7 @@ public class HomeActivity extends AppCompatActivity implements HomePresenter.Vie
 
     @OnTextChanged(R.id.et_home_search)
     void onChangedSearchText(CharSequence text) {
-        homePresenter.inputSearchText(text.toString());
+        homePresenter.inputSearchText(text.toString(), true);
     }
 
     @Override

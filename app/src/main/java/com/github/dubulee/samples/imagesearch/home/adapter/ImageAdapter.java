@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.github.dubulee.samples.imagesearch.HelloKt;
 import com.github.dubulee.samples.imagesearch.R;
 import com.github.dubulee.samples.imagesearch.search.ImageItem;
 import com.github.dubulee.samples.imagesearch.views.OnRecyclerItemClickListener;
@@ -20,14 +19,13 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import io.realm.Realm;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.SearchViewHolder>
         implements ImageAdapterDataModel, ImageAdapterDataView {
 
     private Context context;
     private List<ImageItem> items;
-    private OnRecyclerItemClickListener onRecyclerItemClickListener;
+    private static OnRecyclerItemClickListener onRecyclerItemClickListener;
 
     public ImageAdapter(Context context) {
         this.context = context;
@@ -54,6 +52,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.SearchViewHo
     public int getItemCount() {
         return getSize();
     }
+
+
 
     @Override
     public void add(ImageItem imageItem) {
@@ -85,7 +85,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.SearchViewHo
         this.onRecyclerItemClickListener = onRecyclerItemClickListener;
     }
 
-    static class SearchViewHolder extends RecyclerView.ViewHolder {
+    static class SearchViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @Bind(R.id.tv_item_search_result_title)
         TextView tvTitle;
@@ -96,6 +96,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.SearchViewHo
         public SearchViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            onRecyclerItemClickListener.onItemClick(null, getAdapterPosition());
         }
     }
 }

@@ -10,11 +10,13 @@ package com.github.dubulee.samples.imagesearch.home.presenter;
 
 public interface HomePresenter {
 
-    void inputSearchText(String searchText);
+    void inputSearchText(String searchText, boolean isStart);
 
     void unSubscribeSearch();
 
     void onItemClick(int position);
+
+    void plusPageCount(String searchText);
 
     interface View {
 

@@ -1,5 +1,8 @@
 package com.github.dubulee.samples.imagesearch.home.dagger;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
 import com.github.dubulee.samples.imagesearch.home.adapter.ImageAdapter;
 import com.github.dubulee.samples.imagesearch.home.adapter.ImageAdapterDataModel;
 import com.github.dubulee.samples.imagesearch.home.adapter.ImageAdapterDataView;
@@ -28,10 +31,12 @@ import dagger.Provides;
 public class HomeModule {
     private HomePresenter.View view;
     private ImageAdapter adapter;
+    private LinearLayoutManager layoutManager;
 
-    public HomeModule(HomePresenter.View view, ImageAdapter adapter) {
+    public HomeModule(HomePresenter.View view, ImageAdapter adapter, LinearLayoutManager layoutManager) {
         this.view = view;
         this.adapter = adapter;
+        this.layoutManager = layoutManager;
     }
 
     @Provides
@@ -53,5 +58,8 @@ public class HomeModule {
     HomePresenter.View provideView() {
         return view;
     }
+
+    @Provides
+    LinearLayoutManager provideLayoutManager() {return layoutManager;}
 
 }
