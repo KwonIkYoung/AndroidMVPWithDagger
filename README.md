@@ -1,6 +1,8 @@
 # AndroidMVPWithDagger
 Study &amp; Test Android MVP - using Dagger2 &amp; RXx
 
+해당 소스를 정상작동을 위해서는 root/gradle.properties를 만드셔서 daum_api_key= 어쩌구저쩌구 <--- 이걸 넣어주셔야 합니다.
+
 License
 =======
 Copyright 2015
