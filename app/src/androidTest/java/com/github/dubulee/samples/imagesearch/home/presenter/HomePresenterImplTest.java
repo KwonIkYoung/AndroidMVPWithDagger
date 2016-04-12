@@ -41,7 +41,7 @@ public class HomePresenterImplTest {
 
     @Test
     public void testInputSearchText_EmptyText() throws Exception {
-        homePresenter.inputSearchText("");
+        homePresenter.inputSearchText("", true);
         verify(mockView).refresh();
         verify(mockAdapterDataModel).clear();
     }
@@ -52,7 +52,7 @@ public class HomePresenterImplTest {
         homePresenter.searchSubscription.unsubscribe();
         homePresenter.searchSubject.subscribe(testSubscriber);
 
-        homePresenter.inputSearchText("coupang");
+        homePresenter.inputSearchText("coupang", true);
         Thread.sleep(210);
 
         testSubscriber.assertValue("coupang");
