@@ -1,5 +1,6 @@
 package com.github.dubulee.samples.imagesearch.home.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,6 +26,9 @@ import butterknife.OnTextChanged;
 public class HomeActivity extends AppCompatActivity implements HomePresenter.View{
 
     @Inject
+    Context context;
+
+    @Inject
     HomePresenter homePresenter;
 
     @Inject
@@ -48,7 +52,7 @@ public class HomeActivity extends AppCompatActivity implements HomePresenter.Vie
 
         //Dagger로 Inject
         DaggerHomeComponent.builder()
-                .homeModule(new HomeModule(this, adapter, new LinearLayoutManager(HomeActivity.this)))
+                .homeModule(new HomeModule(this, this, adapter, new LinearLayoutManager(HomeActivity.this)))
                 .build()
                 .inject(this);
 

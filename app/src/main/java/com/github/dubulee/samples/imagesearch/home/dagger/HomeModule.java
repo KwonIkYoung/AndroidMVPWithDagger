@@ -1,5 +1,6 @@
 package com.github.dubulee.samples.imagesearch.home.dagger;
 
+import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -9,6 +10,8 @@ import com.github.dubulee.samples.imagesearch.home.adapter.ImageAdapterDataView;
 import com.github.dubulee.samples.imagesearch.home.presenter.HomePresenter;
 import com.github.dubulee.samples.imagesearch.home.presenter.HomePresenterImpl;
 import com.github.dubulee.samples.imagesearch.network.dagger.NetworkModule;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -29,11 +32,13 @@ import dagger.Provides;
 //따라서 서브클래스를 만들거나 공유할 인터페이스를 구현하도록 만들어 mock 또는 다른 코드 조각으로 교체하기 쉬워집니다.
 @Module(includes = NetworkModule.class)
 public class HomeModule {
+    private Context activiyContext;
     private HomePresenter.View view;
     private ImageAdapter adapter;
     private LinearLayoutManager layoutManager;
 
-    public HomeModule(HomePresenter.View view, ImageAdapter adapter, LinearLayoutManager layoutManager) {
+    public HomeModule(Context ctx, HomePresenter.View view, ImageAdapter adapter, LinearLayoutManager layoutManager) {
+        this.activiyContext = ctx;
         this.view = view;
         this.adapter = adapter;
         this.layoutManager = layoutManager;
@@ -62,4 +67,9 @@ public class HomeModule {
     @Provides
     LinearLayoutManager provideLayoutManager() {return layoutManager;}
 
+//    @Singleton
+    @Provides
+    Context provideActiviyContext() {
+        return this.activiyContext;
+    }
 }
