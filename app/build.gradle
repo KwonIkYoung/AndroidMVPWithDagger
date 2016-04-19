@@ -71,7 +71,7 @@ dependencies {
     compile "com.android.support:recyclerview-v7:${supportLibraryVersion}"
 
     // Database
-    compile "io.realm:realm-android:${relamVersion}"
+//    compile "io.realm:realm-android:${relamVersion}"
 
     // Bean DI
     apt "com.google.dagger:dagger-compiler:${daggerVersion}"
@@ -89,12 +89,15 @@ dependencies {
     // RxAndroid, RxJava
     compile "io.reactivex:rxandroid:${rxAndroidVersion}"
     compile "io.reactivex:rxjava:${rxJavaVersion}"
+    compile "com.jakewharton.rxbinding:rxbinding:${rxBindingVersion}"
 
     // Image Loader
     compile "com.github.bumptech.glide:glide:${glideVersion}"
 
     //kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
+
+    compile "com.github.dubulee:runtimepermissionshelper:${rxPermissionVersion}"
 
     androidTestCompile "com.android.support.test:runner:${testRunnerVersion}"
     androidTestCompile "com.android.support.test:rules:${testRunnerVersion}"
@@ -103,4 +106,5 @@ dependencies {
     androidTestCompile "com.crittercism.dexmaker:dexmaker-mockito:${dexmakerVersion}"
     androidTestCompile "com.crittercism.dexmaker:dexmaker-dx:${dexmakerVersion}"
     androidTestCompile 'com.jayway.awaitility:awaitility:1.7.+'
+
 }

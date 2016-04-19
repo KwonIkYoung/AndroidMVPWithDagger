@@ -13,6 +13,8 @@ ext {
     espressoVersion = "2.2.1"
     relamVersion = "0.87.4"
     kotlinVersion = "1.0.0"
+    rxBindingVersion = "0.4.0"
+    rxPermissionVersion = "0.1.1"
 }
 
 def checkDaumApi() {
@@ -28,7 +30,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0-beta1'
+        classpath 'com.android.tools.build:gradle:2.1.0-beta3'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.0'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'me.tatarka:gradle-retrolambda:3.2.5'
